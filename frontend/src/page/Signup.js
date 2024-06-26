@@ -1,20 +1,21 @@
 import React, { useState } from 'react'
 import loginSignupImage from '../assets/login-animation.gif'
-import { BiShow, BiHide  } from "react-icons/bi";
+import { BiShow, BiHide } from "react-icons/bi";
 import { Link, useNavigate } from 'react-router-dom';
 import { ImagetoBase64 } from '../utility/imagetoBase64';
+import toast from 'react-hot-toast';
 
 const Signup = () => {
   const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
-  const [data,setData] = useState({
-    firstName : "",
-    lastName : "",
-    email : "",
-    password : "",
-    confirmpassword : "",
-    image : ""
+  const [data, setData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    confirmpassword: "",
+    image: ""
   });
   // console.log(data)
   const handleShowPassword = () => {
@@ -24,44 +25,63 @@ const Signup = () => {
     setShowConfirmPassword(preve => !preve)
   }
   const handleOnChange = (e) => {
-    const {name, value} = e.target 
+    const { name, value } = e.target
     setData((preve) => {
       return {
         ...preve,
-        [name] : value 
+        [name]: value
       }
     })
   }
 
-  const handleUploadProfileImage = async(e) => {
+  const handleUploadProfileImage = async (e) => {
     const data = await ImagetoBase64(e.target.files[0])
     console.log(data)
 
     setData((preve) => {
       return {
         ...preve,
-        image : data
+        image: data
       }
     })
   }
 
-  const handleSubmit = (e) => {
+  console.log(process.env.REACT_APP_SEREVR_DOMAIN)
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
-    const {firstName, email, password, confirmpassword} = data 
-    if(firstName &&  email && password && confirmpassword ){
-      if(password === confirmpassword){
-        alert("successfull")
-        navigate("/login")
+    const { firstName, email, password, confirmpassword } = data
+    if (firstName && email && password && confirmpassword) {
+      if (password === confirmpassword) {
+        console.log(data)
+        const fetchData = await fetch(`${process.env.REACT_APP_SEREVR_DOMAIN}/signup`, {
+          method: "POST",
+          headers: {
+            "content-type": "application/json"
+          },
+          body: JSON.stringify(data)
+        })
+
+        const dataRes = await fetchData.json()
+        console.log(dataRes)
+
+        // alert(dataRes.message)
+        toast(dataRes.message)
+
+        if(dataRes.alert){
+          navigate("/login")
+        }
+
       }
-      else{
+      else {
         alert("password and confirm password not equals")
       }
     }
-    else{
+    else {
       alert("Please Enter required fields ")
     }
-    
+
   }
 
 
@@ -70,7 +90,7 @@ const Signup = () => {
       <div className='w-full max-w-sm bg-white m-auto flex flex-col p-4'>
         <h1 className='text-center text-2xl font-bold'>Sign up</h1>
         <div className='w-20 h-20 overflow-hidden rounded-full drop-shadow-md shadow-md m-auto relative'>
-          <img src={ data.image ? data.image : loginSignupImage} className='w-full h-full'/>
+          <img src={data.image ? data.image : loginSignupImage} className='w-full h-full' />
           <label htmlFor='profileImage' >
             <div className='absolute bottom-0 h-1/3 bg-slate-500 bg-opacity-50 w-full text-center cursor-pointer'>
               <p className='text-sm p-1 text-white '>Upload</p>
@@ -80,21 +100,21 @@ const Signup = () => {
         </div>
         <form className='w-full py-3 flex flex-col' onSubmit={handleSubmit}>
           <label htmlFor='firstName'> First Name</label>
-          <input 
-            type={'text'} 
-            id="firstName" 
+          <input
+            type={'text'}
+            id="firstName"
             name='firstName'
-            className='mt-1 mb-2 w-full bg-slate-200 px-2 py-1 rounded focus-within:outline-blue-300' 
+            className='mt-1 mb-2 w-full bg-slate-200 px-2 py-1 rounded focus-within:outline-blue-300'
             value={data.firstName}
             onChange={handleOnChange}
-            />
-          
+          />
+
           <label htmlFor='lastName'> Last Name</label>
-          <input 
+          <input
             type={'text'}
-            id="lastName" 
-            name='lastName' 
-            className='mt-1 mb-2 w-full bg-slate-200 px-2 py-1 rounded focus-within:outline-blue-300' 
+            id="lastName"
+            name='lastName'
+            className='mt-1 mb-2 w-full bg-slate-200 px-2 py-1 rounded focus-within:outline-blue-300'
             value={data.lastName}
             onChange={handleOnChange}
           />
@@ -107,7 +127,7 @@ const Signup = () => {
 
           <label htmlFor='password'> Password</label>
           <div className='flex px-2 bg-slate-200 rounded mt-1 mb-2 focus-within:outline focus-within:outline-blue-300'>
-            <input type={ showPassword ? 'text' : 'password'} id="password" name='password' className='mt-1 mb-1 w-full bg-slate-200 rounded border-none outline-none' 
+            <input type={showPassword ? 'text' : 'password'} id="password" name='password' className='mt-1 mb-1 w-full bg-slate-200 rounded border-none outline-none'
               value={data.password}
               onChange={handleOnChange}
             />
@@ -116,9 +136,9 @@ const Signup = () => {
 
           <label htmlFor='confirmpassword'> Confirm Password</label>
           <div className='flex px-2 bg-slate-200 rounded mt-1 mb-2 focus-within:outline focus-within:outline-blue-300'>
-            <input type={ showConfirmPassword ? 'text' : 'password'} id="confirmpassword" name='confirmpassword' className='mt-1 mb-1 w-full bg-slate-200 rounded border-none outline-none' 
+            <input type={showConfirmPassword ? 'text' : 'password'} id="confirmpassword" name='confirmpassword' className='mt-1 mb-1 w-full bg-slate-200 rounded border-none outline-none'
               value={data.confirmpassword}
-              onChange={handleOnChange}            
+              onChange={handleOnChange}
             />
             <span className='flex text-2xl items-center cursor-pointer' onClick={handleShowConfirmPassword}>{showConfirmPassword ? <BiShow /> : <BiHide />}</span>
           </div>
