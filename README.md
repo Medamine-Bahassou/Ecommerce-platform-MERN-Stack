@@ -1,10 +1,10 @@
 # MERN Stack Project for learning
 
 ## Technologies : 
-- M : MongoDB
-- E : Express js
-- R : React js
-- N : Node js 
+- **M** : MongoDB
+- **E** : Express js
+- **R** : React js
+- **N** : Node js 
 
 # Installation 
 ## Database 
