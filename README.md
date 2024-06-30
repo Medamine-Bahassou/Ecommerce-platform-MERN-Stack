@@ -6,7 +6,7 @@
 - **E** : Express js
 - **R** : React js
 - **N** : Node js 
-
+<!--
 # Installation 
 ## Database 
 create acount `mongodb.com` and create database
@@ -38,7 +38,7 @@ create acount `mongodb.com` and create database
 
   ``
 
-
+-->
 # Review 
 ## Inscription page 
 ![image](https://github.com/Medamine-Bahassou/Ecommerce-platform-MERN-Stack/assets/146652318/ace78082-b99d-40f7-a3b0-7213f64944c3)
