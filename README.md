@@ -47,7 +47,7 @@ create acount `mongodb.com` and create database
 ![image](https://github.com/Medamine-Bahassou/Ecommerce-platform-MERN-Stack/assets/146652318/bb51efaa-c800-4779-a66a-e8510d3422a9)
 ![image](https://github.com/Medamine-Bahassou/Ecommerce-platform-MERN-Stack/assets/146652318/380a1034-314b-40fa-9f68-a4c285c4dbf1)
 ![image](https://github.com/Medamine-Bahassou/Ecommerce-platform-MERN-Stack/assets/146652318/8f17db94-a285-450f-a2db-b01f3bfb9efe)
-![image](https://github.com/Medamine-Bahassou/Ecommerce-platform-MERN-Stack/assets/146652318/34e1ada6-2c30-4f6b-a702-c3662ac506f5)
+![image](https://github.com/Medamine-Bahassou/Ecommerce-platform-MERN-Stack/assets/146652318/b9df7e26-2198-43da-b73c-46f87e9886a2)
 
 
 
