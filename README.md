@@ -50,6 +50,5 @@ create acount `mongodb.com` and create database
 ![image](https://github.com/Medamine-Bahassou/Ecommerce-platform-MERN-Stack/assets/146652318/b9df7e26-2198-43da-b73c-46f87e9886a2)
 
 
-
-
-
+### Sources : 
+[Dynamic Coding with Amit](https://www.youtube.com/watch?v=JFCQLhSMjtM&t=29481s&ab_channel=DynamicCodingwithAmit)
