@@ -1,6 +1,9 @@
 ![MERN_Stack_9437df2ba9_62af1dd3fc](https://github.com/Medamine-Bahassou/Ecommerce-platform-MERN-Stack/assets/146652318/1447ef02-d193-4f09-b85e-86e72a4c9cae)
 # MERN Stack Project for learning
 
+# Demo 
+[Ecommerce MERN APP](https://ecommerce-platform-mern-stack-mins.vercel.app/)
+
 ## Technologies : 
 - **M** : MongoDB
 - **E** : Express js
